@@ -9,6 +9,7 @@ if(isset($_POST['submit'])){
 
 	if ($rowCheck > 0){
 		$dataCheck = dbarray($resultCheck);
+		$profile = $dataCheck['teach_no'];
 		$personnel_no = $dataCheck['teach_id'];
 		$personnel_barcode = $dataCheck['teach_dialect'];
 		$personnel_name = $dataCheck['teach_lname'] . ", " . $dataCheck['teach_fname'] ." " . $dataCheck['teach_xname'] . " " . $dataCheck['teach_mname'];
@@ -41,6 +42,7 @@ if(isset($_POST['submit'])){
 		
 		$personnel_status = ($dataLastLog['CHECKTYPE']=="I"?"Time IN":"Time OUT") . " @ " . date('g:i A', strtotime($dataLastLog['CHECKTIME']));
 	} else{
+		$profile = "noimage";
 		$personnel_no = "N/A";
 		$personnel_barcode = "N/A";
 		$personnel_name = "N/A";
@@ -48,6 +50,7 @@ if(isset($_POST['submit'])){
 		$personnel_status = "Barcode not found, please try again!";
 	}
 } else {
+	$profile = "noimage";
 	$personnel_no = "***";
 	$personnel_barcode = "***";
 	$personnel_name = "***";
@@ -157,7 +160,7 @@ if(isset($_POST['submit'])){
 												<td>:</td>
 												<th><?php echo $personnel_no;?></th>
 												<td width="20%" rowspan="4" align="center">
-													<img class="profile-img" src="../eis/assets/images/noimage.jpg" alt="" width="25">
+													<img class="profile-img" src="../eis/assets/images/teachers/<?php echo $profile;?>.jpg" alt="" width="25">
 												</td>
 											</tr>
 											<tr height="20">
