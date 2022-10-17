@@ -4,7 +4,7 @@ session_start();
 require ('../eis/maincore.php');
 
 if(isset($_POST['submit'])){
-	$resultCheck = dbquery("SELECT * FROM teacher WHERE ((teach_id='".$_POST['username']."' || teach_dialect='".$_POST['username']."' || teach_bio_no='".$_POST['username']."') AND teach_status='1')");
+	$resultCheck = dbquery("SELECT * FROM teacher WHERE (teach_id='".$_POST['username']."' OR teach_dialect='".$_POST['username']."') AND (teach_status='1')");
 	$rowCheck = dbrows($resultCheck );
 
 	if ($rowCheck > 0){
