@@ -4,7 +4,7 @@ session_start();
 require ('../eis/maincore.php');
 
 if(isset($_POST['submit'])){
-	$resultCheck = dbquery("SELECT * FROM teacher WHERE (teach_dialect='".$_POST['username']."' AND teach_status='1')");
+	$resultCheck = dbquery("SELECT * FROM teacher WHERE ((teach_id='".$_POST['username']."' || teach_dialect='".$_POST['username']."' || teach_bio_no='".$_POST['username']."') AND teach_status='1')");
 	$rowCheck = dbrows($resultCheck );
 
 	if ($rowCheck > 0){
@@ -124,16 +124,16 @@ if(isset($_POST['submit'])){
 								<img class="profile-img" src="../eis/assets/images/sanhs_logo.png" alt="">
 								<form class="form-signin" action="" method="post">
 									<div class="input-group">
-										<input type="text" name="username" class="form-control" placeholder="Scan barcode..." value="" autofocus required>
+										<input type="text" name="username" class="form-control" placeholder="ID barcode / Employee no..." value="" autofocus required>
 										<div class="input-group-btn">
 											<button class="btn btn-lg" type="submit" name="submit"><i class="glyphicon glyphicon-search"></i></button>
 										</div>
 									</div>
 								</form>
 								<center>
-									Scan your ID barcode using the scanner.
+									Scan your ID barcode using the scanner or input your Employee number.
 									<br><br>
-									<img src="barcoderead.gif" width="60%">
+									<img src="barcoderead.gif" width="53%">
 									<br><br>
 								</center>
 							</div>
