@@ -10,6 +10,8 @@ if(isset($_POST['submit'])){
 	if ($rowCheck > 0){
 		$dataCheck = dbarray($resultCheck);
 		$profile = $dataCheck['teach_no'];
+		if(file_exists("../eis/assets/images/teachers/$profile.jpg") == 0)
+			$profile="noimage";		
 		$personnel_no = $dataCheck['teach_id'];
 		$personnel_barcode = $dataCheck['teach_dialect'];
 		$personnel_name = $dataCheck['teach_lname'] . ", " . $dataCheck['teach_fname'] ." " . $dataCheck['teach_xname'] . " " . $dataCheck['teach_mname'];
@@ -97,6 +99,19 @@ if(isset($_POST['submit'])){
         $('#myModal').modal('show');
     });
 	</script>
+
+<script type="text/javascript"> 
+function display_c(){
+var refresh=1000; // Refresh rate in milli seconds
+mytime=setTimeout('display_ct()',refresh)
+}
+
+function display_ct() {
+var x = new Date()
+document.getElementById('ct').innerHTML = x;
+display_c();
+ }
+</script>
 	
 </head>
 <body >
@@ -134,9 +149,10 @@ if(isset($_POST['submit'])){
 									</div>
 								</form>
 								<center>
-									Scan your ID barcode using the scanner or input your Employee number.
+									<h2><span id='ct6' style="color: red; font-weight: bold;"></span></h2>
+									Scan your ID barcode using the scanner or input your Employee number. 
 									<br><br>
-									<img src="barcoderead.gif" width="53%">
+									<img src="barcoderead.gif" width="45%">
 									<br><br>
 								</center>
 							</div>
@@ -184,14 +200,15 @@ if(isset($_POST['submit'])){
 											<tr height="20">
 												<td width="20%" align="center">
 													<blink>
-														<h1 style="color:red;"><?php echo $personnel_status;?></h1>
+														<h1 style="color:red;  font-weight: bold;"><?php echo $personnel_status;?></h1>
 													</blink>
+													
 												</td>
 											</tr>
 										</table>
 									</div>
 								</div>
-							</div><br><br><br><br>
+							</div><br><br><br><br><br><br>
 						</div>
 					</div>
 				</div>
@@ -326,6 +343,25 @@ if(isset($_POST['submit'])){
 
     </div>
 </div>
+
+<script>
+	function display_ct6() {
+		var x = new Date()
+		var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+		hours = x.getHours( ) % 12;
+		hours = hours ? hours : 12;
+		var x1=x.getMonth() + 1+ "/" + x.getDate() + "/" + x.getFullYear(); 
+		x1 = hours + ":" +  x.getMinutes() + ":" +  x.getSeconds()  + ampm;
+		document.getElementById('ct6').innerHTML = x1;
+		display_c6();
+	}
+	
+	function display_c6(){
+		var refresh=1000; // Refresh rate in milli seconds
+		mytime=setTimeout('display_ct6()',refresh)
+	}
+	display_c6()
+</script>
 
   </body>
 </html>
