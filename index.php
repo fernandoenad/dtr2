@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
 		$checkLastLog = dbquery("SELECT * FROM checkinout WHERE USERID='".$dataCheck['teach_bio_no']."' ORDER BY CHECKTIME DESC");
 		$dataLastLog = dbarray($checkLastLog);
 		
-		$personnel_status = ($dataLastLog['CHECKTYPE']=="I"?"Time IN":"Time OUT") . " @ " . date('g:i A', strtotime($dataLastLog['CHECKTIME']));
+		$personnel_status = ($dataLastLog['CHECKTYPE']=="I"?"Time IN":"Time OUT") . " @ " . date('g:i A (M. d, Y)', strtotime($dataLastLog['CHECKTIME']));
 	} else{
 		$profile = "noimage";
 		$personnel_no = "N/A";
@@ -200,7 +200,7 @@ display_c();
 											<tr height="20">
 												<td width="20%" align="center">
 													<blink>
-														<h1 style="color:red;  font-weight: bold;"><?php echo $personnel_status;?></h1>
+														<h2 style="color:red;  font-weight: bold;"><?php echo $personnel_status;?></h2>
 													</blink>
 													
 												</td>
@@ -350,8 +350,8 @@ display_c();
 		var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
 		hours = x.getHours( ) % 12;
 		hours = hours ? hours : 12;
-		var x1=x.getMonth() + 1+ "/" + x.getDate() + "/" + x.getFullYear(); 
-		x1 = hours + ":" +  x.getMinutes() + ":" +  x.getSeconds()  + ampm;
+		var x1 = x.getMonth() + 1+ "/" + x.getDate() + "/" + x.getFullYear(); 
+		x1 = x1 + " " + String(hours).padStart(2, "0") + ":" +  String(x.getMinutes()).padStart(2, "0") + ":" +  String(x.getSeconds()).padStart(2, "0")  + ampm;
 		document.getElementById('ct6').innerHTML = x1;
 		display_c6();
 	}
