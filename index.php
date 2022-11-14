@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-require ('../eis/maincore.php');
+require ('maincore.php');
 
 if(isset($_POST['submit'])){
 	$resultCheck = dbquery("SELECT * FROM teacher WHERE (teach_id='".$_POST['username']."' OR teach_dialect='".$_POST['username']."') AND (teach_status='1')");
@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
 	if ($rowCheck > 0){
 		$dataCheck = dbarray($resultCheck);
 		$profile = $dataCheck['teach_no'];
-		if(file_exists("../eis/assets/images/teachers/$profile.jpg") == 0)
+		if(file_exists("./assets/images/teachers/$profile.jpg") == 0)
 			$profile="noimage";		
 		$personnel_no = $dataCheck['teach_id'];
 		$personnel_barcode = $dataCheck['teach_dialect'];
@@ -71,20 +71,20 @@ if(isset($_POST['submit'])){
 	<meta name="description" content="The official website of San Agustin National High School - Sagbayan, Bohol">
     <meta name="author" content="Fernando B. Enad">
 	<meta name="keywords" content="San Agustin NHS, San Agustin National High School">
-    <link rel="icon" href="../eis/assets/images/seal.png">
+    <link rel="icon" href="../assets/images/seal.png">
     <title><?php echo $app_name ;?> | Clock-In/Out Portal</title>
 	
     <!-- Bootstrap -->
-    <link href="../eis/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../eis/assets/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./assets/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
      
 	<!--
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
     -->
-	<link rel="stylesheet" href="../eis/assets/css/style.css">
-	<link rel="stylesheet" href="../eis/assets/css/signin.css">
-	<link href="../eis/assets/css/select2.css" rel="stylesheet">
-	<link href="../eis/assets/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" href="./assets/css/signin.css">
+	<link href="../assets/css/select2.css" rel="stylesheet">
+	<link href="../assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -92,8 +92,8 @@ if(isset($_POST['submit'])){
       <script src="./assets/js/html5shiv.min.js"></script>
       <script src="./assets/js/respond.min.js"></script>
     <![endif]-->
-	<script type="text/javascript" src="../eis/assets/js/jquery.js"></script>
-	<script type="text/javascript" src="../eis/assets/boostrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery.js"></script>
+	<script type="text/javascript" src="../assets/boostrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
     $(window).load(function(){
         $('#myModal').modal('show');
@@ -123,7 +123,7 @@ display_c();
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<span class="navbar-brand">
-						<img class="logo" src="../eis/assets/images/sanhs_logo.png" alt="SANHS" style="height: 20px; margin-top: -2px"/>
+						<img class="logo" src="./assets/images/sanhs_logo.png" alt="SANHS" style="height: 20px; margin-top: -2px"/>
 					</span>
 					<span class="navbar-brand"><?php echo $app_name ;?> | Clock-In/Out Portal</span>
 				</div>
@@ -139,7 +139,7 @@ display_c();
 					<div class="account-wall">
 						<div id="my-tab-content" class="tab-content">
 							<div class="tab-pane active" id="login">
-								<img class="profile-img" src="../eis/assets/images/sanhs_logo.png" alt="">
+								<img class="profile-img" src="./assets/images/sanhs_logo.png" alt="">
 								<form class="form-signin" action="" method="post">
 									<div class="input-group">
 										<input type="text" name="username" class="form-control" placeholder="ID barcode / Employee no..." value="" autofocus required>
@@ -152,7 +152,7 @@ display_c();
 									<h2><span id='ct6' style="color: red; font-weight: bold;"></span></h2>
 									Scan your ID barcode using the scanner or input your Employee number. 
 									<br><br>
-									<img src="barcoderead.gif" width="45%">
+									<img src="barcoderead.gif" width="42%">
 									<br><br>
 								</center>
 							</div>
@@ -176,7 +176,7 @@ display_c();
 												<td>:</td>
 												<th><?php echo $personnel_no;?></th>
 												<td width="20%" rowspan="4" align="center">
-													<img class="profile-img" src="../eis/assets/images/teachers/<?php echo $profile;?>.jpg" alt="" width="25">
+													<img class="profile-img" src="./assets/images/teachers/<?php echo $profile;?>.jpg" alt="" width="25">
 												</td>
 											</tr>
 											<tr height="20">
